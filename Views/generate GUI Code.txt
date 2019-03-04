@@ -1,0 +1,8 @@
+generate gui RESOUCRCE
+pyrcc5 guiResource.qrc -o ../../guiResource.py
+
+generate gui CODE
+pyuic5 gui.ui --resource-suffix Resource -o ../../gui.py
+
+from GUI import guiResource
+

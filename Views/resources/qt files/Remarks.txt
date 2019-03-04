@@ -1,0 +1,2 @@
+The reason that window's size is not the minimized one is due to label (title) that has preferd size.
+in order to fix it, you can fixed the height of the label, e.g. mainWindow try.ui

@@ -1,0 +1,41 @@
+<RCC>
+  <qresource prefix="BrowseBtn">
+    <file>../browseHover.png</file>
+    <file>../browsePush.png</file>
+    <file>../browseDef.png</file>
+  </qresource>
+  <qresource prefix="DefaultImage">
+    <file>../defualtImage.png</file>
+  </qresource>
+  <qresource prefix="Background">
+    <file>../background.jpg</file>
+  </qresource>
+  <qresource prefix="TestBtn">
+    <file>../testDef.png</file>
+    <file>../testHover.png</file>
+    <file>../testPush.png</file>
+  </qresource>
+  <qresource prefix="WelcomeTitle">
+    <file>../welcomeTitle.png</file>
+  </qresource>
+  <qresource prefix="WelcomeImage">
+    <file>../welcom.png</file>
+  </qresource>
+  <qresource prefix="Icon">
+    <file>../icon.ico</file>
+  </qresource>
+  <qresource prefix="Dir">
+    <file>../textInsert.png</file>
+  </qresource>
+  <qresource prefix="TestingTitle">
+    <file>../testingTitle.png</file>
+  </qresource>
+  <qresource prefix="TrainingTitle">
+    <file>../trainingTitle.png</file>
+  </qresource>
+  <qresource prefix="StartTrainingBtn">
+    <file>../startTrainingHover.png</file>
+    <file>../startTrainingDef.png</file>
+    <file>../startTrainingPush.png</file>
+  </qresource>
+</RCC>

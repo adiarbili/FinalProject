@@ -1,0 +1,1 @@
+pyinstaller app.py -i ./Views/resources/icon.ico -F --clean

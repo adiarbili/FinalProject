@@ -11,6 +11,7 @@ from functools import partial
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from Controllers.trainingController import TrainingController
+from Controllers.testingController import TestingController
 
 from Views.trainingView import TrainingView
 from Views.testingView import TestingView
@@ -106,10 +107,9 @@ class MainView(object):
         self.gridLayout.addLayout(self.welcomLayout, 0, 0, 1, 1)
         self.stackedWidget.addWidget(self.Welcome)
 
-        self.trainingGuideController = TrainingController()
-        self.trainingGuideView = TrainingView("Training Guide", self.trainingGuideController)
-        self.stackedWidget.addWidget(self.trainingGuideView.Training)
-        self.trainingGuideController.setView(self.trainingGuideView)
+        self.__initViewsAndControllers(TrainingController, "Training Guide", TrainingView)
+
+        # self.__initViewsAndControllers(TestingController, "Testing Guide", TestingView)
 
         # self.testingGuide = TestingView("Testing Guide")
         # self.stackedWidget.addWidget(self.testingGuide.Testing)
@@ -176,21 +176,6 @@ class MainView(object):
         self.actionTrain_Learner.triggered.connect(partial(controller.switch_content, self._Page.TRAIN_LEARNER.value))
         self.actionTesting_Learner.triggered.connect(partial(controller.switch_content, self._Page.TEST_LEARNER.value))
 
-        # self.browseBtnImgTesting.clicked.connect(partial(controller.browseImageBtnClicked))
-        #
-        #
-        # self.browseBtnModel.clicked.connect(partial(controller.browseDirBtnClicked, self.modelDir))
-        # self.imgDir.textChanged.connect(controller.imgDirChanges)
-
-        # self.trainingDir.textChanged.connect(partial(controller.selectionDirChanges, self.trainingDir, self.Page.TRAIN_GUIDE.value))
-        # self.modelDir.textChanged.connect(partial(controller.selectionDirChanges, self.modelDir, self.Page.TEST_GUIDE.value))
-        #
-        # self.browseBtnTraining.clicked.connect(partial(controller.browseDirBtnClicked, self.trainingDir))
-        #
-        # self.trainBtn.clicked.connect(controller.startTrainingGuide)
-        # self.testBtn.clicked.connect(controller.startTestingGuide)
-
-
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Face Recognition"))
@@ -207,3 +192,9 @@ class MainView(object):
         self.actionAbout.setText(_translate("MainWindow", "About"))
         self.actionTrain_Guide.setText(_translate("MainWindow", "Train Guide"))
         self.actionTest_Guide.setText(_translate("MainWindow", "Test Guide"))
+
+    def __initViewsAndControllers(self, ctrlConstructor, title, viewConstructor):
+        controller = ctrlConstructor()
+        view = viewConstructor(title, controller)
+        controller.setView(view)
+        self.stackedWidget.addWidget(view)

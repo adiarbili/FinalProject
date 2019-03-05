@@ -1,16 +1,23 @@
+from functools import partial
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class TestingView:
 
-    def __init__(self, title):
-        self.Testing = QtWidgets.QWidget()
-        self.Testing.setObjectName("Testing")
-        self.gridLayout_3 = QtWidgets.QGridLayout(self.Testing)
+class TestingView(QtWidgets.QWidget):
+
+    def __init__(self, title, controller):
+        super().__init__()
+        self.setObjectName("Testing")
+        self.gridLayout_3 = QtWidgets.QGridLayout(self)
+
+        # self.Testing = QtWidgets.QWidget()
+        # self.Testing.setObjectName("Testing")
+        # self.gridLayout_3 = QtWidgets.QGridLayout(self.Testing)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.TestingLayout = QtWidgets.QGridLayout()
         self.TestingLayout.setSpacing(0)
         self.TestingLayout.setObjectName("TestingLayout")
-        self.testingTitle = QtWidgets.QLabel(self.Testing)
+        # self.testingTitle = QtWidgets.QLabel(self.Testing)
+        self.testingTitle = QtWidgets.QLabel(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -27,7 +34,8 @@ class TestingView:
         self.ImageDirLayout2.setContentsMargins(20, 0, -1, 0)
         self.ImageDirLayout2.setSpacing(0)
         self.ImageDirLayout2.setObjectName("ImageDirLayout2")
-        self.chosenImg = QtWidgets.QLabel(self.Testing)
+        # self.chosenImg = QtWidgets.QLabel(self.Testing)
+        self.chosenImg = QtWidgets.QLabel(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -43,7 +51,8 @@ class TestingView:
         self.chosenImg.setAlignment(QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
         self.chosenImg.setObjectName("chosenImg")
         self.ImageDirLayout2.addWidget(self.chosenImg)
-        self.testBtn = QtWidgets.QPushButton(self.Testing)
+        # self.testBtn = QtWidgets.QPushButton(self.Testing)
+        self.testBtn = QtWidgets.QPushButton(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -88,7 +97,8 @@ class TestingView:
         self.ImageDirLayout = QtWidgets.QVBoxLayout()
         self.ImageDirLayout.setContentsMargins(-1, 20, -1, -1)
         self.ImageDirLayout.setObjectName("ImageDirLayout")
-        self.browseBoxTesting_2 = QtWidgets.QGroupBox(self.Testing)
+        # self.browseBoxTesting_2 = QtWidgets.QGroupBox(self.Testing)
+        self.browseBoxTesting_2 = QtWidgets.QGroupBox(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -147,7 +157,8 @@ class TestingView:
         self.modelDir.setFrame(False)
         self.modelDir.setObjectName("modelDir")
         self.ImageDirLayout.addWidget(self.browseBoxTesting_2)
-        self.browseBoxTesting_1 = QtWidgets.QGroupBox(self.Testing)
+        # self.browseBoxTesting_1 = QtWidgets.QGroupBox(self.Testing)
+        self.browseBoxTesting_1 = QtWidgets.QGroupBox(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -209,3 +220,15 @@ class TestingView:
         self.ImageDirLayout.addWidget(self.browseBoxTesting_1)
         self.TestingLayout.addLayout(self.ImageDirLayout, 1, 0, 1, 2)
         self.gridLayout_3.addLayout(self.TestingLayout, 0, 0, 1, 1)
+
+        # Connect events to model section.
+        self.modelDir.textChanged.connect(partial(controller.selectionDirChanges, self.modelDir))
+        self.browseBtnModel.clicked.connect(
+            partial(controller.browseDirBtnClicked, self.modelDir, "Model directory loaded successfully"))
+
+        # Connect events to image section.
+        self.imgDir.textChanged.connect(controller.imgDirChanges)
+        self.browseBtnImgTesting.clicked.connect(controller.browseImageBtnClicked)
+
+        # Start testing process.
+        self.testBtn.clicked.connect(controller.startTestingGuide)

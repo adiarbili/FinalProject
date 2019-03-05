@@ -1,23 +1,24 @@
 from functools import partial
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-# class TrainingView(QtWidgets.QWidget):
-class TrainingView:
+class TrainingView(QtWidgets.QWidget):
+# class TrainingView:
     def __init__(self, title, controller):
         # QtWidgets.QWidget.__init__(self)
-        # super().__init__()
-        # self.setObjectName("Training")
+        super().__init__()
+        self.setObjectName("Training")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self)
 
-
-        self.Training = QtWidgets.QWidget()
-        self.Training.setObjectName("Training")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.Training)
+        # self.Training = QtWidgets.QWidget()
+        # self.Training.setObjectName("Training")
+        # self.gridLayout_2 = QtWidgets.QGridLayout(self.Training)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.trainingLayout = QtWidgets.QGridLayout()
         self.trainingLayout.setHorizontalSpacing(0)
         self.trainingLayout.setVerticalSpacing(20)
         self.trainingLayout.setObjectName("trainingLayout")
-        self.browseBoxTraining = QtWidgets.QGroupBox(self.Training)
+        # self.browseBoxTraining = QtWidgets.QGroupBox(self.Training)
+        self.browseBoxTraining = QtWidgets.QGroupBox(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -81,7 +82,8 @@ class TrainingView:
         self.trainingDir.raise_()
         self.browseBtnTraining.raise_()
         self.trainingLayout.addWidget(self.browseBoxTraining, 1, 0, 1, 1)
-        self.trainingTitle = QtWidgets.QLabel(self.Training)
+        # self.trainingTitle = QtWidgets.QLabel(self.Training)
+        self.trainingTitle = QtWidgets.QLabel(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -96,7 +98,8 @@ class TrainingView:
         self.trainingLayout.addWidget(self.trainingTitle, 0, 0, 1, 1, QtCore.Qt.AlignHCenter)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.trainingLayout.addItem(spacerItem, 2, 0, 1, 1)
-        self.trainBtn = QtWidgets.QPushButton(self.Training)
+        # self.trainBtn = QtWidgets.QPushButton(self.Training)
+        self.trainBtn = QtWidgets.QPushButton(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)

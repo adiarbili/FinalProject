@@ -16,7 +16,7 @@ class TrainingController(Controller):
             # start training process
             self.setStatusBarMessage("Starting training process")
             try:
-                training_thread = Thread(target=printX, daemon=True) # daemon=None - means inherited
+                training_thread = Thread(target=self.__printX, daemon=True) # daemon=None - means inherited
                 training_thread.start()
                 # _thread.start_new_thread(printX,())
             except:
@@ -24,6 +24,6 @@ class TrainingController(Controller):
                self.setStatusBarMessage("Unknown error: unable to start training process")
 
 
-def printX():
-    for i in range(99999999):
-        print("aaaaaaaaaaaaaaaaaaaaaaaaaaa {}".format(i))
+    def __printX(self):
+        for i in range(99999999):
+            print("aaaaaaaaaaaaaaaaaaaaaaaaaaa {}".format(i))

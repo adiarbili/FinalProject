@@ -109,7 +109,7 @@ class MainView(object):
 
         self.__initViewsAndControllers(TrainingController, "Training Guide", TrainingView)
 
-        # self.__initViewsAndControllers(TestingController, "Testing Guide", TestingView)
+        self.__initViewsAndControllers(TestingController, "Testing Guide", TestingView)
 
         # self.testingGuide = TestingView("Testing Guide")
         # self.stackedWidget.addWidget(self.testingGuide.Testing)
